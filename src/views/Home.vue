@@ -21,6 +21,8 @@ import * as THREE from "three";
 import ModelObj from "../components/three/model-obj";
 import Control from "../components/Control";
 import { Toast } from "mint-ui";
+// import * as TWEEN from "@tweenjs/tween.js";
+var TWEEN = require('@tweenjs/tween.js');
 export default {
   name: "home",
   data() {
@@ -64,6 +66,8 @@ export default {
   },
   methods: {
     onClick(intersected) {
+      this.move()
+      console.log(TWEEN)
       if (!intersected) return;
       console.log(intersected);
       let name = intersected.object.name;
@@ -96,13 +100,26 @@ export default {
           new THREE.Vector3(0, 1, 0),
           this.toRadians(v)
         );
-        console.log(this.activeObject)
+        console.log(this.activeObject);
       } else {
         this.activeObject.children[0].setRotationFromAxisAngle(
           new THREE.Vector3(1, 0, 0),
           this.toRadians(v)
         );
       }
+    },
+    move() {
+      new TWEEN.Tween(this.activeObject.position)
+        .to(
+          {
+            x: 1000,
+            y: 1000,
+            z: 1000
+          },
+          2000
+        )
+        .easing(TWEEN.Easing.Elastic.Out)
+        .start();
     },
     toRadians(angle) {
       return (angle * 2 * Math.PI) / 360;

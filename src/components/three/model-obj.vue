@@ -221,7 +221,7 @@ export default {
     createGrid() {
       if (!this.hasGrid) return;
       this.wrapper.add(new THREE.GridHelper(5000, 50, "#000", "#888"));
-      this.createSprite();
+      //this.createSprite();
     },
     createSprite() {
       var texture = THREE.ImageUtils.loadTexture("./img/sprite.png");
