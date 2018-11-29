@@ -1,0 +1,23 @@
+.example-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -20px 0 0 -20px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid;
+  border-color: #1e81d2 #1e81d2 transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
