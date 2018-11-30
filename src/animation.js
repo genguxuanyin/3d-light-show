@@ -14,7 +14,11 @@ class Animation {
             if (pro.type != cur.type) return cur;
             if (pro.type == 'position' && cur.type == 'position') {
                 tweens.push(
-                    new TWEEN.Tween(pro.data).to(cur.data).onUpdate(data => {
+                    new TWEEN.Tween(pro.data)
+                    .to(cur.data)
+                    .delay(1000)
+                    .easing(TWEEN.Easing.Quadratic.Out)
+                    .onUpdate(data => {
                         object.position.copy(data);
                     })
                 )
