@@ -85,6 +85,26 @@ export default {
           }
         },
         {
+          type: "rotation",
+          data: {
+            rotation:0
+          }
+        },
+        {
+          type: "rotation",
+          data: {
+            rotation:90
+          }
+        },
+        {
+          type: "position",
+          data: {
+            x: 1000,
+            y: 0,
+            z: 0
+          }
+        },
+        {
           type: "position",
           data: {
             x: 0,
