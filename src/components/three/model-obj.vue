@@ -65,7 +65,7 @@ export default {
       loader: objLoader,
       mtlLoader,
       activeObject: null,
-      spriteRotation:0
+      spriteRotation: 0
     };
   },
   watch: {
@@ -224,8 +224,10 @@ export default {
       this.createSprite();
     },
     createSprite() {
-      var texture = THREE.ImageUtils.loadTexture("./img/sprite.png");
-      texture.center.set( 0.5, 0.5 );
+      var texture = new THREE.TextureLoader().load("./img/sprite.png");
+      //   texture.offset.set(0, 0);
+      texture.repeat.set(2, 2);
+      texture.center.set(0.5, 0.5);
       var material = new THREE.SpriteMaterial({
         map: texture,
         useScreenCoordinates: false
@@ -239,14 +241,14 @@ export default {
       } else {
         texture.matrix.identity().rotate(API.rotation); // I don't understand how rotation can preceed scale, but it seems to be required...
       } */
-      setInterval(()=>{
-          this.spriteRotation += this.toRadians(6);
-          texture.rotation = this.spriteRotation % (2*Math.PI);
+      setInterval(() => {
+        this.spriteRotation += this.toRadians(6);
+        texture.rotation = this.spriteRotation % (2 * Math.PI);
         //   texture.matrix.identity().rotate(this.spriteRotation % (2*Math.PI));
-          console.log(texture.rotation);
-      },25)
-
-      console.log(texture.rotation);
+        //   console.log(texture.rotation);
+      }, 40);
+      return sprite;
+      console.log(texture);
       console.log(texture.matrixAutoUpdate);
     },
     toRadians(angle) {
