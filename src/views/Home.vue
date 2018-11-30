@@ -21,11 +21,14 @@ import * as THREE from "three";
 import ModelObj from "../components/three/model-obj";
 import Control from "../components/Control";
 import { Toast } from "mint-ui";
+// import * as TWEEN from "@tweenjs/tween.js";
+var TWEEN = require("@tweenjs/tween.js");
+import Animation from "../animation.js";
 export default {
   name: "home",
   data() {
     return {
-      cameraPosition: { x: -5000, y: 2000, z: 5000 },
+      cameraPosition: { x: 5000, y: 2000, z: 5000 },
       loaded: 0,
       loading: true,
       hasSkyBox: true,
@@ -34,7 +37,7 @@ export default {
         enableDamping: true, // an animation loop is required when either damping or auto-rotation are enabled
         dampingFactor: 0.25,
         screenSpacePanning: false,
-        minDistance: 4000,
+        minDistance: 400,
         maxDistance: 8000,
         maxPolarAngle: Math.PI / 2
       },
@@ -64,6 +67,45 @@ export default {
   },
   methods: {
     onClick(intersected) {
+      var actives = [
+        {
+          type: "position",
+          data: {
+            x: 1000,
+            y: 0,
+            z: -1000
+          }
+        },
+        {
+          type: "position",
+          data: {
+            x: 1000,
+            y: 0,
+            z: 0
+          }
+        },
+        {
+          type: "position",
+          data: {
+            x: 0,
+            y: 0,
+            z: 0
+          }
+        },
+        {
+          type: "position",
+          data: {
+            x: 0,
+            y: 0,
+            z: 1000
+          }
+        }
+      ];
+      let animation = new Animation(this.activeObject,actives);
+      animation.init();
+      animation.start();
+      // this.move(this.activeObject);
+      console.log(TWEEN);
       if (!intersected) return;
       console.log(intersected);
       let name = intersected.object.name;
@@ -96,7 +138,7 @@ export default {
           new THREE.Vector3(0, 1, 0),
           this.toRadians(v)
         );
-        console.log(this.activeObject)
+        console.log(this.activeObject);
       } else {
         this.activeObject.children[0].setRotationFromAxisAngle(
           new THREE.Vector3(1, 0, 0),
@@ -104,6 +146,7 @@ export default {
         );
       }
     },
+    move(object, actives) {},
     toRadians(angle) {
       return (angle * 2 * Math.PI) / 360;
     }

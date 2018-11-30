@@ -27,6 +27,7 @@ import {
 } from 'three'
 import { getSize, getCenter } from './util'
 import { OrbitControls } from './controls/OrbitControls'
+var TWEEN = require('@tweenjs/tween.js');
 
 const suportWebGL = ( () => {
 
@@ -518,6 +519,7 @@ export default {
             this.reqId = requestAnimationFrame( this.animate );
             this.controls.update();
             this.render();
+            TWEEN.update();
         },
         render() {
 

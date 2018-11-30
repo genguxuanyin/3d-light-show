@@ -221,7 +221,7 @@ export default {
     createGrid() {
       if (!this.hasGrid) return;
       this.wrapper.add(new THREE.GridHelper(5000, 50, "#000", "#888"));
-      this.createSprite();
+      //this.createSprite();
     },
     createSprite() {
       var texture = new THREE.TextureLoader().load("./img/sprite.png");
@@ -234,7 +234,7 @@ export default {
       });
       var sprite = new THREE.Sprite(material);
       sprite.position.set(0, 0, 0);
-      sprite.scale.set(1024, 1024, 1.0); // imageWidth, imageHeight
+      sprite.scale.set(1024, 102, 1.0); // imageWidth, imageHeight
       this.wrapper.add(sprite);
       /* if (texture.matrixAutoUpdate === true) {
         texture.rotation = API.rotation; // rotation is around [ 0.5, 0.5 ]
